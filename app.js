@@ -4,7 +4,7 @@ const https = require("https");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -54,12 +54,10 @@ app.post("/", function (req, res) {
   request.end();
 });
 
+app.post("/failure", function (req, res) {
+  res.redirect("/");
+});
+
 app.listen(port, function () {
   console.log("Server running on port: " + port);
 });
-
-// Api key:
-// 1beac3e1451ad274e5b75559edaffa6f-us6
-
-// Audiance id
-// 4ea1eff89f
